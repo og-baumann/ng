@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MCG Ng</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="/ng/angular.js"></script>
+        <link href="/stylesheets/app.css" rel="stylesheet" type="text/css">
+        <link href="/bs/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div ng-app="app" class="container">
+            <h1><%= msg %></h1>
+            <form ng-controller="mcgForm" ng-submit="submit()">
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input type="text" ng-model="pt.firstName" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input type="text" ng-model="pt.lastName" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select ng-model="pt.gender" required class="form-control">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>                  
+                </div>
+                <div class="form-group">
+                        <label>Date Of Birth</label>
+                        <input type="date" ng-model="pt.dob" min="1900-01-01" max="{{maxAge}}" required class="form-control">
+                </div>
+                <input type="submit" value="Add Patient" class="btn">
+                <h2 class="table-title">Patients In Database</h2>
+                <table class="table">
+                    <thead>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>DOB</th>
+                        <th>Gender</th>
+                    </thead>
+                    <tr ng-repeat="pat in patients">
+                        <td>{{pat.first_name}}</td>
+                        <td>{{pat.last_name}}</td>
+                        <td>{{pat.n_dob}}</td>
+                        <td>{{pat.gender}}</td>
+                    </tr>
+                </table>                
+            </form>
+        </div>
+        <script src="/javascripts/app.js"></script>
+    </body>
+</html>
